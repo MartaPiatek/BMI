@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">BMI</string>
     <string name="action_settings">Settings</string>
+
+    <string name="wzrost">Wzrost</string>
+    <string name="height">height</string>
+    <string name="mass">mass</string>
+    <string name="err_wrongMass">Wrong mass</string>
+
 </resources>
