@@ -1,6 +1,8 @@
 package pl.martapiatek.bmi;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,23 +22,23 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtViewMass, txtViewHeigth, txtViewResult;
 
     private BMICounter mBmiCounter;
-    double result;
+    double resultBmi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        editTextHeight = (EditText) findViewById(R.id.editTextHeight);
-        editTextMass = (EditText) findViewById(R.id.editTextMass);
+        editTextHeight = findViewById(R.id.editTextHeight);
+        editTextMass = findViewById(R.id.editTextMass);
 
-        txtViewHeigth = (TextView) findViewById(R.id.textViewHeight);
-        txtViewMass = (TextView) findViewById(R.id.textViewMass);
-        txtViewResult = (TextView) findViewById(R.id.textViewResult);
+        txtViewHeigth = findViewById(R.id.textViewHeight);
+        txtViewMass = findViewById(R.id.textViewMass);
+        txtViewResult = findViewById(R.id.textViewResult);
 
-        btnCount = (Button) findViewById(R.id.btnCount);
+        btnCount = findViewById(R.id.btnCount);
 
 
         btnCount.setOnClickListener(new View.OnClickListener() {
@@ -58,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 if (!mBmiCounter.isMassValid()) {
                     editTextMass.setError(getString(R.string.err_wrongMass));
                 }
-                result = mBmiCounter.count();
+                resultBmi = mBmiCounter.count();
 
-                txtViewResult.setText(String.valueOf(result));
+                txtViewResult.setText(String.valueOf(resultBmi));
 
 
             }
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this
                         , BmiActivity.class);
-                i.putExtra("BMI", String.valueOf(result));
+                i.putExtra("BMI", String.valueOf(resultBmi));
                 startActivity(i);
             }
         });
@@ -92,10 +94,35 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+
+        if (id == R.id.action_jednostka) {
             return true;
         }
+
+        if (id == R.id.action_zapis) {
+            SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("Height", editTextHeight.getText().toString());
+            editor.putString("Mass", editTextMass.getText().toString());
+            editor.putString("BMI", String.valueOf(resultBmi));
+            editor.commit();
+            return true;
+        }
+
+        if (id == R.id.action_odczyt) {
+
+            SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+            editTextMass.setText(sharedPref.getString("Mass", "" ) );
+            editTextHeight.setText(sharedPref.getString("Height", "" ) );
+            txtViewResult.setText(sharedPref.getString("BMI", "" ) );
+
+            return true;
+        }
+
+
+
+
+
 
         return super.onOptionsItemSelected(item);
     }

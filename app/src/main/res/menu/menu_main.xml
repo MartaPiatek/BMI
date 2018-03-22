@@ -3,8 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pl.martapiatek.bmi.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_jednostka"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Zmień jednostki"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_zapis"
+        android:orderInCategory="100"
+        android:title="Zapis"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_odczyt"
+        android:orderInCategory="100"
+        android:title="Odczyt"
         app:showAsAction="never" />
 </menu>
