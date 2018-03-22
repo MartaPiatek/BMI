@@ -24,7 +24,7 @@ public class BmiActivity extends AppCompatActivity {
         if(extras !=null)
         {
             bmi = Double.valueOf(extras.getString("BMI"));
-            txtViewBmi.setText(String.valueOf(bmi));
+            txtViewBmi.setText("BMI = " + String.valueOf(bmi));
 
             if(bmi < 18.5)
                 getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(BmiActivity.this, R.color.color1));
