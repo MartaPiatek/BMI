@@ -17,7 +17,7 @@ public class BmiActivity extends AppCompatActivity {
 
 
 
-        txtViewBmi = (TextView) findViewById(R.id.txtViewBmi);
+        txtViewBmi = findViewById(R.id.txtViewBmi);
         double bmi;
 
         Bundle extras = getIntent().getExtras();
@@ -34,7 +34,10 @@ public class BmiActivity extends AppCompatActivity {
             else if(bmi >=25 )
                 getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(BmiActivity.this, R.color.color3));
 
+
+
         }
 
     }
 }
+
