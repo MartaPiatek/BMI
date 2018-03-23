@@ -21,12 +21,12 @@ class BMICounterForLbIn extends BMICounter {
 
     @Override
     public boolean isMassValid() {
-        return getMass() > 5 && getMass() < 250 ;
+        return getMass() > 11 && getMass() < 551 ;
     }
 
     @Override
     public boolean isHeightValid() {
-        return getHeight() > 0;
+        return getHeight() > 10;
     }
 
     public boolean isDataValid() {
