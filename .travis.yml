@@ -1,3 +1,4 @@
+ 
  language: android
  sudo: false
  jdk:
@@ -8,10 +9,10 @@
   global:
    - ANDROID_API_LEVEL=26
    - EMULATOR_API_LEVEL=21
-   - ANDROID_BUILD_TOOLS_VERSION=26.0.0
+   - ANDROID_BUILD_TOOLS_VERSION=26.0.2
    - ANDROID_ABI=armeabi-v7a
    - ANDROID_TAG=google_apis
-   - ADB_INSTALL_TIMEOUT=10 # minutes
+   - ADB_INSTALL_TIMEOUT=20 # minutes
  android:
   components:
     - tools
@@ -21,6 +22,7 @@
     - android-$EMULATOR_API_LEVEL
     - extra-google-m2repository
     - extra-android-m2repository
+    - tools
 
     - addon-google_apis-google-$ANDROID_API_LEVEL
     - addon-google_apis-google-$EMULATOR_API_LEVEL
